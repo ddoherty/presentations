@@ -1,0 +1,5 @@
+#!/bin/sh
+set -v
+git add .
+git commit -m "WasmAndYou"
+git push --all origin
