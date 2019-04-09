@@ -52,6 +52,79 @@
 			border: none;
 			box-shadow: none;
 		}
+
+
+		/* https://codepen.io/maxds/pen/DcveB */
+		blockquote {
+			display: block;
+			background: #fff;
+			padding: 15px 20px 15px 45px;
+			margin: 0 0 20px;
+			position: relative;
+
+			/*Font*/
+			font-family: Georgia, serif;
+			font-size: 16px;
+			line-height: 1.2;
+			color: #666;
+			text-align: left;
+
+			/*Borders - (Optional)*/
+			border-left: 15px solid steelblue;
+			border-right: 2px solid steelblue;
+
+			/*Box Shadow - (Optional)*/
+			-moz-box-shadow: 2px 2px 15px #ccc;
+			-webkit-box-shadow: 2px 2px 15px #ccc;
+			box-shadow: 2px 2px 15px #ccc;
+		}
+
+		blockquote::before {
+			content: "\201C";
+			/*Unicode for Left Double Quote*/
+
+			/*Font*/
+			font-family: Georgia, serif;
+			font-size: 60px;
+			font-weight: bold;
+			color: #999;
+
+			/*Positioning*/
+			position: absolute;
+			left: 10px;
+			top: px;
+		}
+
+		blockquote::after {
+			/*Reset to make sure*/
+			content: "";
+		}
+
+		blockquote a {
+			text-decoration: none;
+			background: #eee;
+			cursor: pointer;
+			padding: 0 3px;
+			color: steelblue;
+		}
+
+		blockquote a:hover {
+			color: #666;
+		}
+
+		blockquote em {
+			font-style: italic;
+		}
+
+		.flex-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+		}
+
+		.flex-container>div {
+			margin-top: 5px;
+		}
 	</style>
 </head>
 
@@ -62,29 +135,300 @@
 		<!-- Any section element inside of this container is displayed as a slide -->
 		<div class="slides">
 			<section>
-				<img src="images/Web_Assembly_Logo.png" width="25%" />
+				<img src="images/Web_Assembly_Logo.png" width="20%" />
 				<h1>Wasm and You</h1>
 				<h4>A Brief Tour of WebAssembly</h4>
 				<p>
 					<small>
-					<a href="https://ddoherty.github.io/presentations/WasmAndYou" target="_blank">
-						https://ddoherty.github.io/presentations/WasmAndYou
-					</a>
+						<a href="https://ddoherty.github.io/presentations/WasmAndYou" target="_blank">
+							https://ddoherty.github.io/presentations/WasmAndYou
+						</a>
 					</small>
 				</p>
 				<p>
 					<small>Dave Doherty<br />Bitwixt Software Systems LLC<br />ddoherty@bitwixt.com</small>
 				</p>
 			</section>
+			<section>
+				<section>
+					<h4>The Buzz</h4>
+				</section>
+				<section>
+					<p style="padding:0; margin:0;">
+						<small>
+							June 2015: Brendan Eich, <em>Creator of the JavaScript programming language</em>
+						</small>
+					</p>
+					<blockquote style="font-size: 0.6em;">
+						<p style="padding-left:35px; padding-top:25px;">
+							<strong>Today’s Big News:
+							</strong>
+							<br /><br />
+							It’s by now a cliché that JS has become the assembly language of the Web. Rather, JS is one
+							syntax
+							for a portable and safe machine language, let’s say.
+						</p>
+						<p style="padding-left:35px;">
+							Today I’m pleased to announce that
+							cross-browser work has begun on WebAssembly, a new intermediate representation for safe code
+							on the
+							Web.
+						</p>
+
+					</blockquote>
+					<p style="padding:0; margin:0;">
+						<small>
+							<a href="https://brendaneich.com/2015/06/from-asm-js-to-webassembly/"
+								target="_blank">https://brendaneich.com/2015/06/from-asm-js-to-webassembly/</a>
+
+						</small>
+					</p>
+				</section>
+				<section style="padding:0;">
+					<p style="padding:0; margin:0;">
+						<small>
+							June 2017: <em>Bringing the Web up to Speed with WebAssembly</em><br />
+						</small>
+					</p>
+					<p style="padding:0; margin:0;">
+						<img src="images/BringWebUpToSpeedWebAssembly.png" style="padding:0; margin:0;" />
+					</p>
+					<p style="padding:0; margin:0;">
+						<small>
+							<a href="https://people.mpi-sws.org/~rossberg/papers/Haas,%20Rossberg,%20Schuff,%20Titzer,%20Gohman,%20Wagner,%20Zakai,%20Bastien,%20Holman%20-%20Bringing%20the%20Web%20up%20to%20Speed%20with%20WebAssembly.pdf"
+								target="_blank">people.mpi-sws.org</a>
+						</small>
+					</p>
+
+				</section>
+
+
+
+			</section>
+			<section>
+				<section>
+					<h4>What is WebAssembly?</h4>
+				</section>
+				<section>
+					<blockquote style="font-size: 0.9em;">
+						<p style="padding-left:35px; padding-top: 10px;">
+							WebAssembly (abbreviated Wasm) is a binary instruction format for a stack-based virtual
+							machine.
+							Wasm is designed as a portable target for compilation of high-level languages like
+							C/C++/Rust,
+							enabling deployment on the web for client and server applications.
+						</p>
+					</blockquote>
+					<p>
+						<small>
+							<a href="https://webassembly.org/" target="_blank">https://webassembly.org/</a>
+						</small>
+					</p>
+				</section>
+				<section>
+					<blockquote style="font-size:0.9em;">
+						<p style="padding-left:35px; padding-top: 10px;">
+							At its core, WebAssembly is a virtual instruction set architecture (virtual ISA).
+						</p>
+					</blockquote>
+					<p>
+						<small>
+							<a href="https://webassembly.github.io/threads/intro/introduction.html#scope"
+								target="_blank">https://webassembly.github.io/threads/intro/introduction.html</a>
+						</small>
+					</p>
+
+					<aside class="notes">
+						I prefer this definition.
+					</aside>
+				</section>
+
+				<section>
+					<h4>Shorthand:</h4>
+					<blockquote style="font-size:0.9em;">
+						<p style="padding-left:35px; padding-top: 10px;">
+							<em>Efficient<sup>*</sup>, Low-Level Bytecode for the Web</em>
+						</p>
+						<p style="text-align:center;">
+							<small>(and Elsewhere)</small>
+						</p>
+						</p>
+					</blockquote>
+					<p>&nbsp;</p>
+					<p class="fragment">
+						<sup>*</sup><em>Fast to Load</em>
+					</p>
+					<p class="fragment">
+						<em>Fast to Execute</em>
+					</p>
+					<aside class="notes">
+						What do we mean by efficient?
+					</aside>
+				</section>
+
+			</section>
+			<section>
+				<section>
+					<h4>
+						"Bytecode for the Web"
+					</h4>
+					<p>
+						<small>
+							<em>We've tried this before:</em>
+						</small>
+					</p>
+					<div class="flex-container">
+						<div style="width:30%;">
+							<img src="images/flash.png" style="vertical-align: middle;" />
+						</div>
+						<div style="width:30%;">
+							<img src="images/Java.jpg" style="vertical-align: middle;"" />
+	</div>
+	<div style=" width:30%;">
+
+							<img src="images/ActiveX.png" style="vertical-align: middle;"" />
+</div>
+</div>
+				
+				<ul>
+						<small>
+					<li>Proprietary</li>
+					<li>Plugins</li>
+					<li>Security Nightmares</li>
+					</small>
+				</ul>
+				<aside class=" notes">
+							<p>
+								Microsoft’s ActiveX used code-signing to run x86 binaries on the Web.
+								It relied entirely upon codesigning and
+								so it achieved safety through a trust model, not through technical means
+								like sandboxing.
+							</p>
+							<p>
+								You may also remember Google's Native Client and
+								Portable Native Client.
+								Introduced a sandboxing technique for machine code
+								that used static validation of machine code.
+								Cannot synchronously access JavaScript or Web APIs.
+								Exclusive to Chrome.
+							</p>
+							</aside>
+				</section>
+				<section>
+					<h4>Wasm Won.</h4>
+					<p>&nbsp;</p>
+					<ul>
+						<small>
+							<li>
+								Followed the Web Standards Process
+							</li>
+							<li>
+								Built-in to Browsers (and Node) &ndash; No Plugins
+							</li>
+							<li>
+								Actively Supported by all Major Vendors
+							</li>
+							<li>
+								Safety: Runs in a sandboxed execution environment
+							</li>
+						</small>
+					</ul>
+				</section>
+			</section>
+
+			<section>
+				<h4>Wasm Goals</h4>
+				<small>
+					<ul>
+						<li>
+							Safe, fast, and portable semantics:
+							<ul>
+								<li>safe to execute</li>
+								<li><strong>fast to execute</strong></li>
+								<li>language-, hardware-, and platform-independent</li>
+								<li>deterministic and easy to reason about</li>
+								<li>simple interoperability with the Web platform</li>
+							</ul>
+						</li>
+						<li>
+							Safe and efficient representation:
+							<ul>
+								<li><strong>compact and easy to decode</strong></li>
+								<li>easy to validate and compile</li>
+								<li>easy to generate for producers</li>
+								<li><strong>streamable</strong> and parallelizable</li>
+							</ul>
+						</li>
+					</ul>
+					<p style="text-align: left;">
+						From: <em>Bringing the Web up to Speed with WebAssembly</em>
+						<br />
+						See also:
+						<a href="https://webassembly.org/docs/high-level-goals/"
+							target="_blank">https://webassembly.org/docs/high-level-goals/</a>
+					</p>
+				</small>
+				<aside class="notes">
+					<p>
+						Safety is paramount because code originates from untrusted sources.
+					</p>
+					<p>
+						Low-level code like that emitted by a C/C++ compiler is typically optimized ahead-of-time.
+					</p>
+					<p>
+						The Web spans not only many device classes, but different
+						machine architectures, operating systems, and browsers.
+					</p>
+					<p>
+						Code transmitted over the network should be as compact as possible to reduce load
+						times, reduce bandwidth, and improve responsiveness.
+						Code on the Web is typically transmitted as JavaScript source, which is far
+						less compact than a binary format, even when minified and compressed.
+					</p>
+				</aside>
+
+			</section>
 
 			<section>
 				<section>
-					<img src="images/JSPipeline.png"  />
+					<h4>
+						Why is Wasm faster than JavaScript?
+					</h4>
+					<p class="fragment">
+						Let's compare execution pipelines…
+					</p>
 				</section>
-				<section>
-					<img src="images/BothPipelines.png"  />
+				<section style="font-size:0.8em;">
+					<aside class="notes">
+						Pipelines!
+					</aside>
+					<p>
+						<img src="images/JSPipeline.png" />
+					</p>
+					<p class="fragment" style="text-align: left;">
+						JS:
+					</p>
+
+					<ul>
+						<li class="fragment">Synchronous, lots of phases</li>
+						<li class="fragment">Performance is <em>Slow(er)</em> and <em>Unpredictable</em></li>
+					</ul>
 				</section>
-					</section>
+				<section style="font-size:0.8em;">
+					<p>
+						<img src="images/BothPipelines.png" />
+					</p>
+					<p class="fragment" style="text-align: left;">
+						Wasm:
+					</p>
+					<ul>
+						<li class="fragment"><em>Smaller</em> (Binary)</li>
+						<li class="fragment"><em>Optimized</em> Ahead of Time</li>
+						<li class="fragment">Async Compiles: Usually <em>Compiles Faster</em> than it arrives!</li>
+						<li class="fragment">Performance is <em>Fast(er)</em> and <em>Predictable</em></li>
+					</ul>
+				</section>
+			</section>
 
 			<section>
 				<h2>Hello There</h2>
@@ -497,7 +841,7 @@ Reveal.addEventListener( 'customevent', function() {
 			center: true,
 			hash: true,
 
-			transition: 'slide', // none/fade/slide/convex/concave/zoom
+			transition: 'convex', // none/fade/slide/convex/concave/zoom
 
 			// More info https://github.com/hakimel/reveal.js#dependencies
 			dependencies: [
